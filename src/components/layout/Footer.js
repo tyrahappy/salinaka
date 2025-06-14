@@ -1,3 +1,4 @@
+// Footer component created on June 13
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
