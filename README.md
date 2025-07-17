@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Salinaka E-commerce Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive, and modular e-commerce web application built with **React** and **Tailwind CSS**, featuring product browsing, cart management, and checkout flow.
 
-## Available Scripts
+[Live Demo](https://salinaka-ecommerce.web.app/)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 📸 Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> Continued...
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 📦 Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Home Page**: Highlights featured products and provides clear navigation.
+- **Products Page**: Displays product list/grid with name, image, and price.
+- **Product Detail Page**: Shows full product description, image, and add-to-cart button.
+- **Cart Page**: Displays cart items, allows quantity adjustments and removals.
+- **Checkout Page**: Collects shipping information and confirms order.
+- **Navigation Bar & Footer**: Persistent layout components across all pages.
+- **Responsive Design**: Optimized for mobile and desktop.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Live User Flow
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. User lands on the **Home Page**.
+2. Browses products on the **Products Page**.
+3. Clicks a product to view **Details**.
+4. Adds the product to the **Cart**.
+5. Views cart and proceeds to **Checkout**.
+6. Fills in shipping info and submits the order.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Layer     | Tools Used                        |
+|-----------|-----------------------------------|
+| Frontend  | `React`, `Tailwind CSS`           |
+| Routing   | `React Router`                    |
+| State Management | `React Context` (for cart state) |
+| Deployment| `Firebase Hosting`                |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+git clone https://github.com/tyrahappy/salinaka.git
+cd salinaka
+npm install
+npm start
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
