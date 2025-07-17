@@ -1,49 +1,63 @@
-import { Link } from 'react-router-dom';
-import { ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline';
-import { useSelector } from 'react-redux';  // useSelector 用于从 Redux 中获取数据
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+
+// Eye logo SVG
+const EyeLogo = () => (
+  <svg width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="inline-block align-middle mr-2">
+    <ellipse cx="24" cy="12" rx="22" ry="10" stroke="#222" strokeWidth="2" fill="none" />
+    <circle cx="24" cy="12" r="5" fill="#222" />
+  </svg>
+);
 
 const Navbar = () => {
-  const cartItems = useSelector((state) => state.cart.items);   // the cartItems is the state of the cart
+  const location = useLocation();
+  // 判断当前路由高亮
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="text-2xl font-bold text-primary">
-            Salinaka
+    <nav className="bg-white border-b border-gray-100">
+      <div className="container mx-auto flex items-center justify-between py-4">
+        {/* Logo & Brand */}
+        <Link to="/" className="flex items-center text-black text-2xl font-bold">
+          <EyeLogo />
+          <span className="font-serif tracking-wide">SALINAKA</span>
+          <span className="ml-1 text-xs font-light tracking-widest align-top">EYEWEAR</span>
+        </Link>
+
+        {/* Center Navigation */}
+        <div className="flex space-x-8 ml-8">
+          <Link to="/" className={`text-base ${isActive("/") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Home</Link>
+          <Link to="/products" className={`text-base ${isActive("/products") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Shop</Link>
+          <Link to="/featured" className="text-base text-gray-500 hover:text-black">Featured</Link>
+          <Link to="/recommended" className="text-base text-gray-500 hover:text-black">Recommended</Link>
+        </div>
+
+        {/* Right Section: Search, Cart, Auth */}
+        <div className="flex items-center space-x-4">
+          {/* Search Box */}
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search product..."
+              className="border border-gray-300 rounded px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+            <span className="absolute left-2 top-2.5 text-gray-400">
+              <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </span>
+          </div>
+
+          {/* Cart Icon */}
+          <Link to="/cart" className="text-black hover:text-primary">
+            <ShoppingCartIcon className="h-7 w-7" />
           </Link>
 
-          {/* Navigation Links */}
-          <div className="hidden md:flex space-x-8">
-            <Link to="/" className="text-gray-600 hover:text-primary">
-              Home
-            </Link>
-            <Link to="/products" className="text-gray-600 hover:text-primary">
-              Products
-            </Link>
-            <Link to="/about" className="text-gray-600 hover:text-primary">
-              About
-            </Link>
-            <Link to="/contact" className="text-gray-600 hover:text-primary">
-              Contact
-            </Link>
-          </div>
-
-          {/* Icons */}
-          <div className="flex items-center space-x-4">
-            <Link to="/account" className="text-gray-600 hover:text-primary">
-              <UserIcon className="h-6 w-6" />
-            </Link>
-            <Link to="/cart" className="text-gray-600 hover:text-primary relative">
-              <ShoppingCartIcon className="h-6 w-6" />
-              {cartItems.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItems.length}
-                </span>
-              )}
-            </Link>
-          </div>
+          {/* Sign Up & Sign In Buttons */}
+          <Link to="/signup" className="bg-black text-white px-6 py-2 rounded font-semibold">Sign Up</Link>
+          <Link to="/signin" className="bg-gray-100 text-gray-500 px-6 py-2 rounded font-semibold">Sign In</Link>
         </div>
       </div>
     </nav>
