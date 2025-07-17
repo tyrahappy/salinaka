@@ -1,8 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@tailwind base; /* Tailwind base styles */
+@tailwind components; /* Tailwind component styles */
+@tailwind utilities; /* Tailwind utility styles */
 
-@layer base {
+@layer base { 
   body {
     @apply bg-gray-50 text-gray-900;
     margin: 0;

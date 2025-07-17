@@ -17,7 +17,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col">  // Tailwind css
           <Navbar />
           <main className="flex-grow">
             <Routes>
