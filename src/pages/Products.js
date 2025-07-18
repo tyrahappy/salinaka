@@ -34,6 +34,40 @@ function Products() {
     }
   }, []);
 
+  // Listen for filter changes from navbar
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const savedFilters = localStorage.getItem('appliedFilters');
+      if (savedFilters) {
+        const filters = JSON.parse(savedFilters);
+        setActiveFilters({
+          brand: filters.brand !== "All Brands" ? filters.brand : null,
+          priceRange: filters.priceRange,
+          sortBy: filters.sortBy !== "None" ? filters.sortBy : null
+        });
+        // Clear localStorage after reading
+        localStorage.removeItem('appliedFilters');
+      }
+    };
+
+    const handleFiltersUpdated = (event) => {
+      const filters = event.detail;
+      setActiveFilters({
+        brand: filters.brand !== "All Brands" ? filters.brand : null,
+        priceRange: filters.priceRange,
+        sortBy: filters.sortBy !== "None" ? filters.sortBy : null
+      });
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('filtersUpdated', handleFiltersUpdated);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('filtersUpdated', handleFiltersUpdated);
+    };
+  }, []);
+
   // Apply filters and search
   useEffect(() => {
     let filtered = allProducts;

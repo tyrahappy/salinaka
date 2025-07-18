@@ -32,8 +32,8 @@ function FilterModal({ isOpen, onClose, onApplyFilters }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold">Filters</h2>
@@ -84,26 +84,37 @@ function FilterModal({ isOpen, onClose, onApplyFilters }) {
             </span>
           </div>
           
-          <div className="relative">
-            <input
-              type="range"
-              min="100"
-              max="600"
-              value={priceRange[0]}
-              onChange={(e) => handlePriceChange(e, 0)}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-            />
-            <input
-              type="range"
-              min="100"
-              max="600"
-              value={priceRange[1]}
-              onChange={(e) => handlePriceChange(e, 1)}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider absolute top-0"
-            />
+          {/* Price Range Sliders */}
+          <div className="space-y-4">
+            {/* Min Price Slider */}
+            <div>
+              <label className="block text-xs text-gray-500 mb-1">Min Price: ${priceRange[0]}</label>
+              <input
+                type="range"
+                min="100"
+                max="600"
+                value={priceRange[0]}
+                onChange={(e) => handlePriceChange(e, 0)}
+                className="w-full slider"
+              />
+            </div>
+            
+            {/* Max Price Slider */}
+            <div>
+              <label className="block text-xs text-gray-500 mb-1">Max Price: ${priceRange[1]}</label>
+              <input
+                type="range"
+                min="100"
+                max="600"
+                value={priceRange[1]}
+                onChange={(e) => handlePriceChange(e, 1)}
+                className="w-full slider"
+              />
+            </div>
           </div>
           
-          <div className="flex justify-between text-xs text-gray-500 mt-1">
+          {/* Price Scale */}
+          <div className="flex justify-between text-xs text-gray-500 mt-2">
             <span>$100</span>
             <span>$200</span>
             <span>$300</span>

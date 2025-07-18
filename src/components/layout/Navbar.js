@@ -26,8 +26,8 @@ const Navbar = () => {
     if (location.pathname !== '/products') {
       window.location.href = '/products';
     } else {
-      // If we're already on products page, trigger a page refresh to apply filters
-      window.location.reload();
+      // If we're already on products page, trigger a custom event to apply filters
+      window.dispatchEvent(new CustomEvent('filtersUpdated', { detail: filters }));
     }
   };
 
