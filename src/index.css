@@ -44,7 +44,7 @@
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    background: #FF6B6B;
+    background: #000;
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -61,7 +61,7 @@
   }
   
   .slider::-moz-range-thumb {
-    background: #FF6B6B;
+    background: #000;
     height: 20px;
     width: 20px;
     border-radius: 50%;
