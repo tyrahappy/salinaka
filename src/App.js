@@ -12,12 +12,14 @@ import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import Featured from './pages/Featured';
+import Recommended from './pages/Recommended';
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div className="min-h-screen flex flex-col">  // Tailwind css
+        <div className="min-h-screen flex flex-col">  {/* Tailwind css */}
           <Navbar />
           <main className="flex-grow">
             <Routes>
@@ -26,6 +28,8 @@ function App() {
               <Route path="/products/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/featured" element={<Featured />} />
+              <Route path="/recommended" element={<Recommended />} />
             </Routes>
           </main>
           <Footer />

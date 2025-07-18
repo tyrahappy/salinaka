@@ -1,27 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-// 眼镜类商品数据
-const featuredProducts = [
-  {
-    id: 1,
-    name: "Classic Round Glasses",
-    price: 120,
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    id: 2,
-    name: "Modern Square Eyewear",
-    price: 150,
-    image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80",
-  },
-  {
-    id: 3,
-    name: "Aviator Sunglasses",
-    price: 180,
-    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
-  },
-];
+import FeaturedProducts from "../features/featured/FeaturedProducts.jsx";
+import featuredProducts from "../features/featured/featuredProducts.js";
+import RecommendedProducts from "../features/recommended/RecommendedProducts.jsx";
+import recommendedProducts from "../features/recommended/recommendedProducts.js";
 
 function Home() {
   return (
@@ -44,43 +26,28 @@ function Home() {
         </div>
       </section>
 
+      {/* Featured Products Section - use component */}
+      <FeaturedProducts products={featuredProducts} />
+
+      {/* Recommended Products Section */}
+      <RecommendedProducts products={recommendedProducts} />
+
       {/* Features Section */}
       <section className="container py-12 grid md:grid-cols-3 gap-8 text-center">
         <div>
+          <div className="text-4xl mb-4">🚚</div>
           <h2 className="text-2xl font-semibold mb-2">Free Shipping</h2>
-          <p>On all orders over $100</p>
+          <p className="text-gray-600">On all orders over $100 — no hidden fees, no surprises. Enjoy fast and reliable delivery straight to your door.</p>
         </div>
         <div>
+          <div className="text-4xl mb-4">📞</div>
           <h2 className="text-2xl font-semibold mb-2">24/7 Support</h2>
-          <p>Friendly customer service</p>
+          <p className="text-gray-600">Friendly customer service — we're here whenever you need us, day or night, with real humans ready to help.</p>
         </div>
         <div>
+          <div className="text-4xl mb-4">🔒</div>
           <h2 className="text-2xl font-semibold mb-2">Secure Payment</h2>
-          <p>100% secure payment</p>
-        </div>
-      </section>
-
-      {/* Featured Products Section */}
-      <section className="container py-12">
-        <h2 className="text-3xl font-bold mb-8 text-center">Featured Eyewear</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {featuredProducts.map((product) => (
-            <div key={product.id} className="border rounded-lg p-4 shadow hover:shadow-lg transition">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="h-48 w-full object-cover rounded mb-4"
-              />
-              <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-              <p className="text-lg text-primary font-bold mb-2">${product.price}</p>
-              <Link
-                to={`/products/${product.id}`}
-                className="btn btn-primary w-full"
-              >
-                View Details
-              </Link>
-            </div>
-          ))}
+          <p className="text-gray-600">100% secure payment — your data is encrypted and protected by industry-leading security standards. Shop with confidence.</p>
         </div>
       </section>
     </div>
