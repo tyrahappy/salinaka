@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function FilterModal({ isOpen, onClose, onApplyFilters }) {
   const [selectedBrand, setSelectedBrand] = useState("All Brands");
   const [sortBy, setSortBy] = useState("None");
   const [priceRange, setPriceRange] = useState([100, 600]);
+
+  // Reset filters when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedBrand("All Brands");
+      setSortBy("None");
+      setPriceRange([100, 600]);
+    }
+  }, [isOpen]);
 
   const brands = ["All Brands", "Ray-Ban", "Oakley", "Gucci", "Prada", "Tom Ford", "Warby Parker"];
   const sortOptions = ["None", "Price: Low to High", "Price: High to Low", "Name: A to Z", "Name: Z to A"];
@@ -89,27 +98,37 @@ function FilterModal({ isOpen, onClose, onApplyFilters }) {
             {/* Min Price Slider */}
             <div>
               <label className="block text-xs text-gray-500 mb-1">Min Price: ${priceRange[0]}</label>
-              <input
-                type="range"
-                min="100"
-                max="600"
-                value={priceRange[0]}
-                onChange={(e) => handlePriceChange(e, 0)}
-                className="w-full slider"
-              />
+              <div className="relative">
+                <input
+                  type="range"
+                  min="100"
+                  max="600"
+                  value={priceRange[0]}
+                  onChange={(e) => handlePriceChange(e, 0)}
+                  className="w-full slider bg-gray-200"
+                  style={{
+                    background: `linear-gradient(to right, #000 0%, #000 ${((priceRange[0] - 100) / 500) * 100}%, #e5e7eb ${((priceRange[0] - 100) / 500) * 100}%, #e5e7eb 100%)`
+                  }}
+                />
+              </div>
             </div>
             
             {/* Max Price Slider */}
             <div>
               <label className="block text-xs text-gray-500 mb-1">Max Price: ${priceRange[1]}</label>
-              <input
-                type="range"
-                min="100"
-                max="600"
-                value={priceRange[1]}
-                onChange={(e) => handlePriceChange(e, 1)}
-                className="w-full slider"
-              />
+              <div className="relative">
+                <input
+                  type="range"
+                  min="100"
+                  max="600"
+                  value={priceRange[1]}
+                  onChange={(e) => handlePriceChange(e, 1)}
+                  className="w-full slider bg-gray-200"
+                  style={{
+                    background: `linear-gradient(to right, #000 0%, #000 ${((priceRange[1] - 100) / 500) * 100}%, #e5e7eb ${((priceRange[1] - 100) / 500) * 100}%, #e5e7eb 100%)`
+                  }}
+                />
+              </div>
             </div>
           </div>
           
