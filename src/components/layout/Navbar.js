@@ -19,9 +19,16 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   const handleApplyFilters = (filters) => {
-    console.log("Applied filters:", filters);
-    // Here you can implement the actual filtering logic
-    // For now, we'll just log the filters
+    // Store filters in localStorage so Products page can access them
+    localStorage.setItem('appliedFilters', JSON.stringify(filters));
+    
+    // If we're not on the products page, navigate there
+    if (location.pathname !== '/products') {
+      window.location.href = '/products';
+    } else {
+      // If we're already on products page, trigger a page refresh to apply filters
+      window.location.reload();
+    }
   };
 
   return (
