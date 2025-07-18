@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+import FilterModal from "../FilterModal";
 
 // Eye logo SVG
 const EyeLogo = () => (
@@ -12,55 +13,83 @@ const EyeLogo = () => (
 
 const Navbar = () => {
   const location = useLocation();
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  
   // 判断当前路由高亮
   const isActive = (path) => location.pathname === path;
 
+  const handleApplyFilters = (filters) => {
+    console.log("Applied filters:", filters);
+    // Here you can implement the actual filtering logic
+    // For now, we'll just log the filters
+  };
+
   return (
-    <nav className="bg-white border-b border-gray-100">
-      <div className="container mx-auto flex items-center justify-between py-4">
-        {/* Logo & Brand */}
-        <Link to="/" className="flex items-center text-black text-2xl font-bold">
-          <EyeLogo />
-          <span className="font-serif tracking-wide">SALINAKA</span>
-          <span className="ml-1 text-xs font-light tracking-widest align-top">EYEWEAR</span>
-        </Link>
-
-        {/* Center Navigation */}
-        <div className="flex space-x-8 ml-8">
-          <Link to="/" className={`text-base ${isActive("/") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Home</Link>
-          <Link to="/products" className={`text-base ${isActive("/products") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Shop</Link>
-          <Link to="/featured" className={`text-base ${isActive("/featured") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Featured</Link>
-          <Link to="/recommended" className={`text-base ${isActive("/recommended") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Recommended</Link>
-        </div>
-
-        {/* Right Section: Search, Cart, Auth */}
-        <div className="flex items-center space-x-4">
-          {/* Search Box */}
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search product..."
-              className="border border-gray-300 rounded px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-primary"
-            />
-            <span className="absolute left-2 top-2.5 text-gray-400">
-              <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="7" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </span>
-          </div>
-
-          {/* Cart Icon */}
-          <Link to="/cart" className="text-black hover:text-primary">
-            <ShoppingCartIcon className="h-7 w-7" />
+    <>
+      <nav className="bg-white border-b border-gray-100">
+        <div className="container mx-auto flex items-center justify-between py-4">
+          {/* Logo & Brand */}
+          <Link to="/" className="flex items-center text-black text-2xl font-bold">
+            <EyeLogo />
+            <span className="font-serif tracking-wide">SALINAKA</span>
+            <span className="ml-1 text-xs font-light tracking-widest align-top">EYEWEAR</span>
           </Link>
 
-          {/* Sign Up & Sign In Buttons */}
-          <Link to="/signup" className="bg-black text-white px-6 py-2 rounded font-semibold">Sign Up</Link>
-          <Link to="/signin" className="bg-gray-100 text-gray-500 px-6 py-2 rounded font-semibold">Sign In</Link>
+          {/* Center Navigation */}
+          <div className="flex space-x-8 ml-8">
+            <Link to="/" className={`text-base ${isActive("/") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Home</Link>
+            <Link to="/products" className={`text-base ${isActive("/products") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Shop</Link>
+            <Link to="/featured" className={`text-base ${isActive("/featured") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Featured</Link>
+            <Link to="/recommended" className={`text-base ${isActive("/recommended") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Recommended</Link>
+          </div>
+
+          {/* Right Section: Search, Filter, Cart, Auth */}
+          <div className="flex items-center space-x-4">
+            {/* Search Box */}
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search product..."
+                className="border border-gray-300 rounded px-4 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+              <span className="absolute left-2 top-2.5 text-gray-400">
+                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="7" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </span>
+            </div>
+
+            {/* Filter Button */}
+            <button
+              onClick={() => setIsFilterModalOpen(true)}
+              className="bg-gray-100 text-gray-700 px-4 py-2 rounded flex items-center gap-2 hover:bg-gray-200 transition"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              Filters
+            </button>
+
+            {/* Cart Icon */}
+            <Link to="/cart" className="text-black hover:text-primary">
+              <ShoppingCartIcon className="h-7 w-7" />
+            </Link>
+
+            {/* Sign Up & Sign In Buttons */}
+            <Link to="/signup" className="bg-black text-white px-6 py-2 rounded font-semibold">Sign Up</Link>
+            <Link to="/signin" className="bg-gray-100 text-gray-500 px-6 py-2 rounded font-semibold">Sign In</Link>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Filter Modal */}
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        onApplyFilters={handleApplyFilters}
+      />
+    </>
   );
 };
 
