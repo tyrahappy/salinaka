@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 function FeaturedProductCard({ product }) {
   return (
-    <div className="border rounded-lg p-4 shadow hover:shadow-lg transition">
+    <Link
+      to={`/products/${product.id}`}
+      className="block border rounded-lg p-4 shadow hover:shadow-lg transition hover:ring-2 hover:ring-primary focus:outline-none"
+    >
       <img
         src={product.image}
         alt={product.name}
@@ -11,13 +14,7 @@ function FeaturedProductCard({ product }) {
       />
       <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
       <p className="text-lg text-primary font-bold mb-2">${product.price}</p>
-      <Link
-        to={`/products/${product.id}`}
-        className="btn btn-primary w-full"
-      >
-        View Details
-      </Link>
-    </div>
+    </Link>
   );
 }
 
