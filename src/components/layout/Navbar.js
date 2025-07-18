@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { useSelector } from "react-redux";
 import FilterModal from "../FilterModal";
+import CartDrawer from "./CartDrawer";
 
 // Eye logo SVG
 const EyeLogo = () => (
@@ -14,6 +16,8 @@ const EyeLogo = () => (
 const Navbar = () => {
   const location = useLocation();
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+  const cartCount = useSelector(state => state.cart.items.reduce((sum, item) => sum + item.quantity, 0));
   
   // 判断当前路由高亮
   const isActive = (path) => location.pathname === path;
@@ -79,9 +83,17 @@ const Navbar = () => {
             </button>
 
             {/* Cart Icon */}
-            <Link to="/cart" className="text-black hover:text-primary">
+            <button
+              onClick={() => setIsCartDrawerOpen(true)}
+              className="relative text-black hover:text-primary focus:outline-none"
+            >
               <ShoppingCartIcon className="h-7 w-7" />
-            </Link>
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  {cartCount}
+                </span>
+              )}
+            </button>
 
             {/* Sign Up & Sign In Buttons */}
             <Link to="/signup" className="bg-black text-white px-6 py-2 rounded font-semibold min-w-[100px] whitespace-nowrap text-center">Sign Up</Link>
@@ -96,6 +108,8 @@ const Navbar = () => {
         onClose={() => setIsFilterModalOpen(false)}
         onApplyFilters={handleApplyFilters}
       />
+      {/* Cart Drawer */}
+      <CartDrawer isOpen={isCartDrawerOpen} onClose={() => setIsCartDrawerOpen(false)} />
     </>
   );
 };

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store/cartSlice";
 import allProducts from "../data/allProducts.js";
 
 function ProductDetail() {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const [product, setProduct] = useState(null);
   const [selectedSize, setSelectedSize] = useState("--Select Size--");
   const [selectedColor, setSelectedColor] = useState("Brown");
@@ -54,8 +57,15 @@ function ProductDetail() {
       alert("Please select a size");
       return;
     }
-    // TODO: Add to cart functionality
-    alert(`Added ${product.name} (${selectedSize}, ${selectedColor}) to cart!`);
+    dispatch(addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      brand: product.brand,
+      size: selectedSize,
+      color: selectedColor
+    }));
   };
 
   return (
