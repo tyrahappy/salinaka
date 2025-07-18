@@ -84,8 +84,8 @@ const Navbar = () => {
             </Link>
 
             {/* Sign Up & Sign In Buttons */}
-            <Link to="/signup" className="bg-black text-white px-6 py-2 rounded font-semibold">Sign Up</Link>
-            <Link to="/signin" className="bg-gray-100 text-gray-500 px-6 py-2 rounded font-semibold">Sign In</Link>
+            <Link to="/signup" className="bg-black text-white px-6 py-2 rounded font-semibold min-w-[100px] whitespace-nowrap text-center">Sign Up</Link>
+            <Link to="/signin" className="bg-gray-100 text-gray-500 px-6 py-2 rounded font-semibold min-w-[100px] whitespace-nowrap text-center">Sign In</Link>
           </div>
         </div>
       </nav>
