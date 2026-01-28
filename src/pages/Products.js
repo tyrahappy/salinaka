@@ -131,14 +131,6 @@ function Products() {
     }));
   };
 
-  const handleApplyFilters = (filters) => {
-    setActiveFilters({
-      brand: filters.brand !== "All Brands" ? filters.brand : null,
-      priceRange: filters.priceRange,
-      sortBy: filters.sortBy !== "None" ? filters.sortBy : null
-    });
-  };
-
   const hasActiveFilters = Object.values(activeFilters).some(filter => filter !== null);
 
   return (
