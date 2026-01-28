@@ -1,0 +1,21 @@
+{
+  "experimentId": "add_to_cart_button_color",
+  "generatedAt": "2026-01-28T00:00:00.000Z",
+  "variants": {
+    "control": {
+      "views": 500,
+      "clicks": 60,
+      "ctr": 0.12
+    },
+    "green": {
+      "views": 500,
+      "clicks": 75,
+      "ctr": 0.15
+    }
+  },
+  "summary": {
+    "winner": "green",
+    "lift": 0.25,
+    "notes": "Mock data for demo purposes only."
+  }
+}

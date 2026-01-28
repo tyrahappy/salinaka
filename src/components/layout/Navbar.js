@@ -52,6 +52,7 @@ const Navbar = () => {
             <Link to="/products" className={`text-base ${isActive("/products") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Shop</Link>
             <Link to="/featured" className={`text-base ${isActive("/featured") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Featured</Link>
             <Link to="/recommended" className={`text-base ${isActive("/recommended") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Recommended</Link>
+            <Link to="/experiments" className={`text-base ${isActive("/experiments") ? "font-semibold text-black" : "text-gray-500 hover:text-black"}`}>Experiments</Link>
           </div>
 
           {/* Right Section: Search, Filter, Cart, Auth */}

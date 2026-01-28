@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
 import allProducts from "../data/allProducts.js";
+import { useExperiment } from "../experiments/useExperiment";
+import { trackEvent } from "../analytics/track";
 
 function ProductDetail() {
   const { id } = useParams();
@@ -11,6 +13,7 @@ function ProductDetail() {
   const [selectedSize, setSelectedSize] = useState("--Select Size--");
   const [selectedColor, setSelectedColor] = useState("Brown");
   const [selectedImage, setSelectedImage] = useState(0);
+  const { experimentId, variant } = useExperiment("addToCartButton");
 
   // Product images for different colors
   const productImages = {
@@ -66,6 +69,14 @@ function ProductDetail() {
       size: selectedSize,
       color: selectedColor
     }));
+    trackEvent("add_to_cart", {
+      experimentId,
+      variant,
+      productId: product.id,
+      size: selectedSize,
+      color: selectedColor,
+      price: product.price,
+    });
   };
 
   return (
@@ -174,7 +185,11 @@ function ProductDetail() {
               {/* Add to Cart Button */}
               <button
                 onClick={handleAddToCart}
-                className="w-full bg-black text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition duration-200"
+                className={`w-full text-white py-3 px-6 rounded-lg font-semibold transition duration-200 ${
+                  variant === "green"
+                    ? "bg-green-600 hover:bg-green-700"
+                    : "bg-black hover:bg-gray-800"
+                }`}
               >
                 Add To Basket
               </button>

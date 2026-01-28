@@ -14,6 +14,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Featured from './pages/Featured';
 import Recommended from './pages/Recommended';
+import ExperimentDashboard from './pages/ExperimentDashboard';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/featured" element={<Featured />} />
               <Route path="/recommended" element={<Recommended />} />
+              <Route path="/experiments" element={<ExperimentDashboard />} />
             </Routes>
           </main>
           <Footer />
