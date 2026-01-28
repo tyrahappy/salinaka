@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { clearStoredEvents, getStoredEvents } from "../analytics/track";
 
 const summarizeEvents = (events, experimentId) => {
@@ -35,7 +35,7 @@ const ExperimentDashboard = () => {
     [events]
   );
 
-  const handleRefresh = () => {
+  const handleRefresh = useCallback(() => {
     setEvents(getStoredEvents());
     if (apiUrl) {
       fetch(`${apiUrl}/stats?experimentId=${experimentId}`)
@@ -48,7 +48,11 @@ const ExperimentDashboard = () => {
         })
         .catch(() => {});
     }
-  };
+  }, [apiUrl, experimentId]);
+
+  useEffect(() => {
+    handleRefresh();
+  }, [handleRefresh]);
   const handleClear = () => {
     clearStoredEvents();
     setIsRemote(false);
